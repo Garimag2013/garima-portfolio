@@ -82,7 +82,9 @@ h2 em{font-style:italic;}
 .rule{flex:1;height:1px;background:var(--line);}
 
 #ai-tools{background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+@media(max-width:1100px){.tools-grid{grid-template-columns:1fr 1fr;}}
+
 .tool-card{border-radius:20px;padding:2.2rem;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
 .tool-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(45,34,51,0.1);}
 .tool-card.t1{background:linear-gradient(135deg,#fdf0f5 0%,#f5edff 100%);}
@@ -101,8 +103,8 @@ h2 em{font-style:italic;}
 
 #experience{background:var(--cream);}
 .exp-list{display:flex;flex-direction:column;gap:1.2rem;}
-.exp-card{background:white;border-radius:20px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(45,34,51,0.04);overflow:hidden;opacity:0;transform:translateY(20px);transition:all 0.5s ease;}
-.exp-card.visible{opacity:1;transform:translateY(0);}
+.exp-card{background:white;border-radius:20px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(45,34,51,0.04);overflow:hidden;opacity:1;transform:translateY(0);transition:box-shadow 0.2s,transform 0.2s;}
+.exp-card:hover{box-shadow:0 8px 32px rgba(45,34,51,0.10);}
 .exp-header{padding:1.6rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:start;}
 .exp-co{font-family:'Fira Code',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem;}
 .exp-card:nth-child(1) .exp-co{color:#b07ec8;}
@@ -204,6 +206,7 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
   <a href="#hero" class="nav-logo">Garima <span>Gupta</span></a>
   <ul class="nav-links">
     <li><a href="#ai-tools">AI Tools</a></li>
+    <li><a href="#copilot-project">Copilot Project</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certs">Certs</a></li>
@@ -294,8 +297,22 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
     <div class="rule"></div>
   </div>
   <div class="tools-grid">
+
+    <!-- Tool 01: Copilot NFR Agent -->
+    <div class="tool-card" style="background:linear-gradient(135deg,#f0ecff 0%,#e8f6f0 100%);">
+      <span class="tool-tag" style="background:var(--lavender);color:var(--ink2);">Tool 01 · Copilot Chat Agent</span>
+      <div class="tool-name">NFR-Driven Testing<br><em style="color:var(--lav-d);font-style:italic;">via Copilot Chat</em></div>
+      <div class="tool-sub">End-to-End AI Testing Workflow · JMeter · k6 · Azure</div>
+      <div class="tool-desc">Complete performance testing workflow from Copilot Chat — analyzes code diffs for <code style="background:rgba(255,255,255,0.7);padding:0.1rem 0.3rem;border-radius:4px;font-size:0.7rem;">[PERF]</code> &amp; <code style="background:rgba(255,255,255,0.7);padding:0.1rem 0.3rem;border-radius:4px;font-size:0.7rem;">[ARCH]</code> issues, auto-generates OpenAPI specs, captures NFR targets (p95/p99, concurrency, throughput), generates JMeter/.k6 scripts with auto-correlation &amp; duration assertions, sizes infra, runs a 15-sec sanity check, executes on local/Azure VM/cluster, and delivers p50–p99 analysis with proactive SLA-breach fixes.</div>
+      <div class="impact-row">
+        <div><div class="impact-val" style="color:var(--lav-d);">10</div><div class="impact-lbl">Step Workflow</div></div>
+        <div><div class="impact-val" style="color:var(--mint-d);">Zero</div><div class="impact-lbl">Manual Setup</div></div>
+      </div>
+    </div>
+
+    <!-- Tool 02: Performance Starter Kit -->
     <div class="tool-card t1">
-      <span class="tool-tag">Tool 01 · JMeter + Azure</span>
+      <span class="tool-tag">Tool 02 · JMeter + Azure</span>
       <div class="tool-name">Performance<br>Starter Kit</div>
       <div class="tool-sub">AI-Driven Performance Orchestration Framework</div>
       <div class="tool-desc">Designed and architected an end-to-end performance bootstrapping tool that fully automates JMeter environment deployment — prerequisite management, plugin integration, and environment configuration — reducing manual setup burden to zero.</div>
@@ -304,8 +321,10 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
         <div><div class="impact-val">16h</div><div class="impact-lbl">Saved per Project</div></div>
       </div>
     </div>
+
+    <!-- Tool 03: Performance Result Analyzer -->
     <div class="tool-card t2">
-      <span class="tool-tag">Tool 02 · AI/ML Agent</span>
+      <span class="tool-tag">Tool 03 · AI/ML Agent</span>
       <div class="tool-name">Performance<br>Result Analyzer</div>
       <div class="tool-sub">Intelligent Performance Diagnostics Agent</div>
       <div class="tool-desc">Custom AI Agent automating post-test telemetry collation from App, DB, and load-testing tools. Uses LLM-based analysis and log scanning to correlate metrics across distributed systems — proactively identifying bottlenecks and performance regressions.</div>
@@ -314,17 +333,19 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
         <div><div class="impact-val">10h</div><div class="impact-lbl">Saved per Test Cycle</div></div>
       </div>
     </div>
+
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience" class="pastel-section">
   <div class="sec-head">
-    <span class="sec-num">02 —</span>
+    <span class="sec-num">03 —</span>
     <h2>Work <em>Experience</em></h2>
     <div class="rule"></div>
   </div>
   <div class="exp-list">
+    <!-- Microsoft -->
     <div class="exp-card">
       <div class="exp-strip"></div>
       <div class="exp-header">
@@ -333,19 +354,42 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
       </div>
       <div class="exp-body">
         <ul class="exp-bullets">
-          <li>Drove performance planning, capacity planning, and risk mitigation; presented detailed reports to senior stakeholders.</li>
-          <li>Led AI/ML performance, resiliency, and scalability testing for transformer-based model inference on AKS — reducing infra costs 20%.</li>
-          <li>Managed Azure AKS cluster environments for large-scale JMeter execution; integrated automated frameworks into Azure DevOps CI/CD pipelines.</li>
-          <li>Conducted thread-level profiling via JStack, heap/GC analysis, and code-level RCA using Dynatrace.</li>
-          <li>Served as DRI for SQL and Cosmos DB monitoring; executed Oracle &amp; PostgreSQL tuning using ADDM.</li>
-          <li>Mentored junior engineers in advanced performance testing methodologies.</li>
+          <li>Drove performance scope planning, capacity planning, and risk mitigation; presented detailed performance reports and mentored junior engineers in performance testing methodologies.</li>
+          <li>Created, implemented, optimized, and refactored performance scripts using JMeter and Gatling Scala for web-based, web services, and desktop applications.</li>
+          <li>Collaborated with stakeholders to determine user requirements; drove development of design documents for product and service performance.</li>
+          <li>Set up and managed AKS cluster environments for distributed JMeter execution on Azure; integrated with Azure DevOps Pipelines for automated load tests.</li>
+          <li>Developed automated test frameworks (JMeter, Locust, Apache Benchmark) integrated into CI/CD workflows to support frequent releases.</li>
+          <li>Conducted scalability and stress testing on data ingestion, transformation, and reporting systems under varying workloads.</li>
+          <li>Proficient in SQL for querying, data modelling, and optimizing relational (PostgreSQL, MySQL) and NoSQL (MongoDB, Cassandra) databases.</li>
+          <li>Built custom Azure Functions for volume-based load testing; used Azure Data Factory for monitoring and result collation.</li>
+          <li>Monitored and tuned Perf and Prod environments using Azure IaaS/PaaS/SaaS, Grafana, and Application Insights for high availability and observability.</li>
+          <li>DRI for SQL DB monitoring via SQL Profiler and Cosmos DB; developed Linux shell scripts for performance measurement automation.</li>
         </ul>
-        <div class="exp-chips">
-          <span class="chip">Azure AKS</span><span class="chip">AI Agents</span><span class="chip">JMeter/Gatling</span>
-          <span class="chip">Dynatrace</span><span class="chip">Cosmos DB</span><span class="chip">Docker / K8s</span>
+
+        <!-- AI Sub-project -->
+        <div style="margin-top:1.4rem;padding:1.2rem 1.4rem;background:linear-gradient(135deg,#f0ecff,#e8f6f0);border-radius:14px;border:1px solid var(--line);">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="background:var(--lavender);padding:0.2rem 0.7rem;border-radius:100px;font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink2);">AI Project</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;">Intelligent Resiliency &amp; ASK AI</span>
+          </div>
+          <ul class="exp-bullets" style="margin:0;">
+            <li>Designed a custom automation framework for microservices using Maven and Git, focusing on modularity and high-quality delivery in Agile.</li>
+            <li>Led performance, resiliency, and scalability testing for AI/ML apps — specifically optimizing transformer-based model inference on AKS.</li>
+            <li>Integrated automated load tests (JMeter/Gatling) into Azure DevOps pipelines with code quality checks and log scanning via Azure Monitor/Kusto.</li>
+            <li>Managed distributed testing environments using Docker and Kubernetes to simulate high-concurrency AI workloads — reducing infra costs by 20%.</li>
+            <li>Utilized Azure ADO for change management and incident tracking; documented and resolved all performance bottlenecks per QE process metrics.</li>
+          </ul>
+        </div>
+
+        <div class="exp-chips" style="margin-top:1rem;">
+          <span class="chip">Azure AKS</span><span class="chip">JMeter / Gatling</span><span class="chip">Locust</span>
+          <span class="chip">Cosmos DB</span><span class="chip">Docker / K8s</span><span class="chip">Grafana</span>
+          <span class="chip">App Insights</span><span class="chip">Python / Java</span><span class="chip">Azure DevOps</span>
         </div>
       </div>
     </div>
+
+    <!-- Sapient -->
     <div class="exp-card">
       <div class="exp-strip"></div>
       <div class="exp-header">
@@ -355,17 +399,19 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
       <div class="exp-body">
         <ul class="exp-bullets">
           <li>Executed performance testing and re-engineering on Microsoft cloud IaaS infrastructure.</li>
-          <li>Integrated JMeter with Jenkins for fully automated test execution pipelines.</li>
+          <li>Integrated JMeter with Jenkins to automate test execution pipelines.</li>
           <li>Performed performance tuning on Service Fabric web apps and Redis Cache.</li>
           <li>Conducted comprehensive Linux performance analysis using perfmon, atop, and nmon.</li>
-          <li>Led intensive SQL DB monitoring — index rebuilding, reindexing, defragmentation, and vertical/horizontal partitioning.</li>
+          <li>Led intensive SQL DB monitoring — index rebuilding, reindexing, statistic updates, defragmentation, and vertical/horizontal partitioning.</li>
         </ul>
         <div class="exp-chips">
           <span class="chip">Service Fabric</span><span class="chip">Redis Cache</span>
-          <span class="chip">Jenkins CI</span><span class="chip">Linux Profiling</span>
+          <span class="chip">Jenkins CI</span><span class="chip">Linux Profiling</span><span class="chip">SQL Profiler</span>
         </div>
       </div>
     </div>
+
+    <!-- CresTech -->
     <div class="exp-card">
       <div class="exp-strip"></div>
       <div class="exp-header">
@@ -375,13 +421,14 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
       <div class="exp-body">
         <ul class="exp-bullets">
           <li>Prepared workload models and developed load testing scripts with parameterization, correlation, and checkpoints.</li>
-          <li>Performed Load, Stress, and Endurance testing across varied user load scenarios.</li>
-          <li>Executed Oracle DB monitoring and tuning using ADDM; identified slow queries and set tuning parameters.</li>
-          <li>Conducted thread-level profiling via JStack and IBM Thread Analyzer; monitored heap/GC utilization.</li>
+          <li>Performed Load, Stress, and Endurance testing across varied user load scenarios; identified bottlenecks and performed root cause analysis for performance degradation.</li>
+          <li>Executed Oracle DB monitoring and tuning using ADDM and AWS Reports; identified slow-running queries and set database tuning parameters.</li>
+          <li>Conducted thread-level profiling via JStack and IBM Thread Analyzer; monitored Heap Memory and GC utilization with Java Melody and IBM GC Memory Analyzer.</li>
+          <li>Performed code-level inspection using Dynatrace for root cause analysis of high response times and out-of-memory errors.</li>
         </ul>
         <div class="exp-chips">
           <span class="chip">JMeter</span><span class="chip">Oracle ADDM</span>
-          <span class="chip">JStack</span><span class="chip">Dynatrace</span>
+          <span class="chip">JStack</span><span class="chip">Dynatrace</span><span class="chip">IBM Thread Analyzer</span>
         </div>
       </div>
     </div>
@@ -391,7 +438,7 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
 <!-- SKILLS -->
 <section id="skills" class="pastel-section" style="background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="sec-head">
-    <span class="sec-num">03 —</span>
+    <span class="sec-num">04 —</span>
     <h2>Technical <em>Skills</em></h2>
     <div class="rule"></div>
   </div>
@@ -444,7 +491,7 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
 <!-- CERTIFICATIONS -->
 <section id="certs" class="pastel-section">
   <div class="sec-head">
-    <span class="sec-num">04 —</span>
+    <span class="sec-num">05 —</span>
     <h2>Azure <em>Certifications</em></h2>
     <div class="rule"></div>
   </div>
@@ -491,9 +538,9 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
       <div class="contact-hed">Let's build<br><em>fast systems</em><br>together.</div>
       <p class="contact-sub">Open to senior performance engineering, AI observability, or distributed systems leadership roles. Let's connect.</p>
       <div class="contact-items">
-        <a href="mailto:garima.gupta882@gmail.com" class="c-item">
+        <a href="/cdn-cgi/l/email-protection#5a3d3b2833373b743d2f2a2e3b6262681a3d373b333674393537" class="c-item">
           <div class="c-ico" style="background:var(--rose);">✉️</div>
-          garima.gupta882@gmail.com
+          <span class="__cf_email__" data-cfemail="8deaecffe4e0eca3eaf8fdf9ecb5b5bfcdeae0ece4e1a3eee2e0">[email&#160;protected]</span>
         </a>
         <a href="https://www.linkedin.com/in/ggarima91/" target="_blank" class="c-item">
           <div class="c-ico" style="background:var(--lavender);">🔗</div>
@@ -527,12 +574,6 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
 </footer>
 
 <script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120);
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.exp-card').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
