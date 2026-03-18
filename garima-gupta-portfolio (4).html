@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garima Gupta | Performance Engineering Lead</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:    #f2c4ce;
+  --rose-d:  #e8a0ae;
+  --lavender:#d9d0f0;
+  --lav-d:   #bfb3e8;
+  --mint:    #b8e8d8;
+  --mint-d:  #8fd4bc;
+  --sky:     #b8daf5;
+  --sky-d:   #8ec5ed;
+  --peach:   #fcd5b0;
+  --peach-d: #f5b882;
+  --yellow:  #fde9a2;
+  --cream:   #fdf8f0;
+  --white:   #ffffff;
+  --ink:     #2d2233;
+  --ink2:    #4a4060;
+  --muted:   #8a7f98;
+  --line:    rgba(45,34,51,0.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 10% 15%,rgba(242,196,206,0.35) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 90% 80%,rgba(217,208,240,0.35) 0%,transparent 70%),radial-gradient(ellipse 40% 35% at 50% 50%,rgba(184,232,216,0.2) 0%,transparent 70%);pointer-events:none;z-index:0;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,240,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.nav-logo span{color:var(--rose-d);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Fira Code',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--ink);}
+
+#hero{min-height:100vh;padding:7rem 5rem 4rem;display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+.hero-left{}
+.pill-tag{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;background:var(--rose);border-radius:100px;font-family:'Fira Code',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:1.5rem;}
+.pill-tag::before{content:'◉';font-size:0.55rem;color:var(--rose-d);}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,5vw,5rem);font-weight:700;line-height:1.0;margin-bottom:0.6rem;letter-spacing:-0.01em;}
+h1 em{font-style:italic;color:var(--lav-d);}
+.hero-role{font-family:'Fira Code',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;}
+.summary-card{background:white;border-radius:20px;padding:2rem;border:1px solid var(--line);box-shadow:0 4px 30px rgba(45,34,51,0.06);margin-bottom:2rem;position:relative;overflow:hidden;}
+.summary-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--lavender),var(--mint),var(--sky),var(--peach));}
+.summary-card p{font-size:0.93rem;line-height:1.85;color:var(--ink2);}
+.summary-card p strong{color:var(--ink);font-weight:600;}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.8rem;border-radius:100px;font-family:'Fira Code',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.12);}
+.btn-rose{background:var(--rose);color:var(--ink);}
+.btn-lav{background:var(--lavender);color:var(--ink);}
+.hero-right{display:flex;flex-direction:column;gap:1.2rem;}
+.hero-right-label{font-family:'Fira Code',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.2rem;}
+.ai-skill-card{background:white;border-radius:16px;padding:1.5rem 1.8rem;border:1px solid var(--line);box-shadow:0 2px 16px rgba(45,34,51,0.05);display:flex;align-items:flex-start;gap:1rem;opacity:0;transform:translateX(20px);animation:fadeRight 0.5s forwards;}
+.ai-skill-card:nth-child(2){animation-delay:0.15s;}
+.ai-skill-card:nth-child(3){animation-delay:0.3s;}
+.ai-skill-card:nth-child(4){animation-delay:0.45s;}
+.ai-skill-card:nth-child(5){animation-delay:0.6s;}
+.ai-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.ai-skill-name{font-size:0.88rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+.ai-skill-desc{font-size:0.76rem;color:var(--muted);line-height:1.5;}
+
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:0 5rem 4rem;position:relative;z-index:1;}
+.stat-bubble{background:white;border-radius:18px;padding:1.5rem;border:1px solid var(--line);text-align:center;box-shadow:0 2px 12px rgba(45,34,51,0.05);transition:transform 0.2s;opacity:0;transform:translateY(16px);animation:fadeUp 0.5s forwards;}
+.stat-bubble:hover{transform:translateY(-4px);}
+.stat-bubble:nth-child(1){border-top:3px solid var(--rose-d);animation-delay:0.7s;}
+.stat-bubble:nth-child(2){border-top:3px solid var(--lav-d);animation-delay:0.85s;}
+.stat-bubble:nth-child(3){border-top:3px solid var(--mint-d);animation-delay:1.0s;}
+.stat-bubble:nth-child(4){border-top:3px solid var(--sky-d);animation-delay:1.15s;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;line-height:1;margin-bottom:0.3rem;}
+.stat-lbl{font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+
+.pastel-section{padding:5rem;position:relative;z-index:1;}
+.sec-head{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;}
+.sec-num{font-family:'Fira Code',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:700;line-height:1.1;}
+h2 em{font-style:italic;}
+.rule{flex:1;height:1px;background:var(--line);}
+
+#ai-tools{background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+@media(max-width:1100px){.tools-grid{grid-template-columns:1fr 1fr;}}
+
+.tool-card{border-radius:20px;padding:2.2rem;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
+.tool-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(45,34,51,0.1);}
+.tool-card.t1{background:linear-gradient(135deg,#fdf0f5 0%,#f5edff 100%);}
+.tool-card.t2{background:linear-gradient(135deg,#edf8f4 0%,#e8f4ff 100%);}
+.tool-tag{display:inline-block;padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem;font-family:'Fira Code',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;}
+.t1 .tool-tag{background:var(--rose);color:var(--ink2);}
+.t2 .tool-tag{background:var(--mint);color:var(--ink2);}
+.tool-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;line-height:1.2;margin-bottom:0.4rem;}
+.tool-sub{font-family:'Fira Code',monospace;font-size:0.63rem;color:var(--muted);letter-spacing:0.06em;margin-bottom:1rem;}
+.tool-desc{font-size:0.87rem;line-height:1.7;color:var(--ink2);margin-bottom:1.5rem;}
+.impact-row{display:flex;gap:1.5rem;}
+.impact-val{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;line-height:1;}
+.t1 .impact-val{color:var(--rose-d);}
+.t2 .impact-val{color:var(--mint-d);}
+.impact-lbl{font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:0.2rem;}
+
+#experience{background:var(--cream);}
+.exp-list{display:flex;flex-direction:column;gap:1.2rem;}
+.exp-card{background:white;border-radius:20px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(45,34,51,0.04);overflow:hidden;opacity:1;transform:translateY(0);transition:box-shadow 0.2s,transform 0.2s;}
+.exp-card:hover{box-shadow:0 8px 32px rgba(45,34,51,0.10);}
+.exp-header{padding:1.6rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:start;}
+.exp-co{font-family:'Fira Code',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem;}
+.exp-card:nth-child(1) .exp-co{color:#b07ec8;}
+.exp-card:nth-child(2) .exp-co{color:#5b9bd5;}
+.exp-card:nth-child(3) .exp-co{color:#5bab80;}
+.exp-role-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;}
+.exp-period{font-family:'Fira Code',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-align:right;margin-top:0.2rem;}
+.exp-strip{height:3px;}
+.exp-card:nth-child(1) .exp-strip{background:linear-gradient(90deg,var(--lavender),var(--rose));}
+.exp-card:nth-child(2) .exp-strip{background:linear-gradient(90deg,var(--sky),var(--mint));}
+.exp-card:nth-child(3) .exp-strip{background:linear-gradient(90deg,var(--mint),var(--yellow));}
+.exp-body{padding:0 2rem 1.8rem;}
+.exp-bullets{list-style:none;}
+.exp-bullets li{position:relative;padding-left:1.2rem;margin-bottom:0.65rem;font-size:0.88rem;line-height:1.65;color:var(--ink2);}
+.exp-bullets li::before{content:'◆';position:absolute;left:0;font-size:0.4rem;top:0.5rem;color:var(--muted);}
+.exp-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
+.chip{padding:0.25rem 0.7rem;border-radius:100px;font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;}
+.exp-card:nth-child(1) .chip{background:var(--lavender);color:var(--ink2);}
+.exp-card:nth-child(2) .chip{background:var(--sky);color:var(--ink2);}
+.exp-card:nth-child(3) .chip{background:var(--mint);color:var(--ink2);}
+
+#skills{background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.skill-group{border-radius:16px;padding:1.6rem;border:1px solid var(--line);transition:transform 0.2s;}
+.skill-group:hover{transform:translateY(-3px);}
+.sg1{background:linear-gradient(135deg,#fff5f7,#fff0fb);}
+.sg2{background:linear-gradient(135deg,#f5f3ff,#ede8ff);}
+.sg3{background:linear-gradient(135deg,#edfaf5,#e5f7ff);}
+.sg4{background:linear-gradient(135deg,#eef6ff,#e8f0ff);}
+.sg5{background:linear-gradient(135deg,#fff9ed,#fff3e0);}
+.sg6{background:linear-gradient(135deg,#f0fff6,#edfff5);}
+.sg-title{font-family:'Fira Code',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:0.7rem;border-bottom:1px solid var(--line);}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stag{padding:0.3rem 0.75rem;border-radius:100px;background:white;border:1px solid var(--line);font-size:0.74rem;color:var(--ink2);transition:all 0.15s;cursor:default;}
+.stag:hover{background:var(--ink);color:white;border-color:var(--ink);}
+
+#certs{background:var(--cream);}
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.cert-card{background:white;border-radius:16px;padding:1.5rem;border:1px solid var(--line);display:flex;align-items:flex-start;gap:1rem;box-shadow:0 2px 10px rgba(45,34,51,0.04);transition:transform 0.2s;}
+.cert-card:hover{transform:translateY(-3px);}
+.cert-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.cert-code-txt{font-family:'Fira Code',monospace;font-size:0.72rem;font-weight:500;color:var(--ink);letter-spacing:0.05em;margin-bottom:0.2rem;}
+.cert-name-txt{font-size:0.8rem;color:var(--muted);}
+
+#awards{background:white;border-top:1px solid var(--line);}
+.awards-flex{display:flex;gap:1.2rem;flex-wrap:wrap;}
+.award-card{flex:1;min-width:220px;border-radius:18px;padding:1.8rem;border:1px solid var(--line);transition:transform 0.2s;}
+.award-card:hover{transform:translateY(-4px);}
+.award-card:nth-child(1){background:linear-gradient(135deg,#fff5f7,#ffe8f0);}
+.award-card:nth-child(2){background:linear-gradient(135deg,#f5f3ff,#ede8ff);}
+.award-card:nth-child(3){background:linear-gradient(135deg,#edfaf5,#e2f8f0);}
+.award-emoji{font-size:1.8rem;margin-bottom:0.8rem;}
+.award-title{font-weight:600;font-size:0.95rem;margin-bottom:0.3rem;}
+.award-body{font-size:0.8rem;color:var(--muted);line-height:1.5;}
+
+#contact{padding:5rem;background:linear-gradient(135deg,#fdf0f5 0%,#f0ecff 50%,#e8f6f0 100%);border-top:1px solid var(--line);position:relative;z-index:1;}
+.contact-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:center;}
+.contact-hed{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:1rem;}
+.contact-hed em{font-style:italic;color:var(--lav-d);}
+.contact-sub{font-size:0.92rem;color:var(--ink2);line-height:1.75;margin-bottom:2.5rem;}
+.contact-items{display:flex;flex-direction:column;gap:0.8rem;}
+.c-item{display:flex;align-items:center;gap:0.9rem;padding:1rem 1.3rem;background:white;border-radius:14px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:0.87rem;transition:transform 0.2s,box-shadow 0.2s;}
+.c-item:hover{transform:translateX(5px);box-shadow:0 4px 16px rgba(45,34,51,0.1);}
+.c-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
+.edu-block{background:white;border-radius:18px;padding:2rem;border:1px solid var(--line);box-shadow:0 4px 20px rgba(45,34,51,0.06);}
+.edu-label{font-family:'Fira Code',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;}
+.edu-item{margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);}
+.edu-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.edu-deg{font-weight:600;font-size:0.95rem;margin-bottom:0.2rem;}
+.edu-inst{font-size:0.82rem;color:var(--muted);}
+
+footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;display:flex;justify-content:space-between;align-items:center;font-family:'Fira Code',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;position:relative;z-index:1;}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+@keyframes fadeRight{to{opacity:1;transform:translateX(0);}}
+.hero-left>*{opacity:0;transform:translateY(20px);animation:fadeUp 0.6s forwards;}
+.hero-left>*:nth-child(1){animation-delay:0.1s;}
+.hero-left>*:nth-child(2){animation-delay:0.2s;}
+.hero-left>*:nth-child(3){animation-delay:0.3s;}
+.hero-left>*:nth-child(4){animation-delay:0.45s;}
+.hero-left>*:nth-child(5){animation-delay:0.6s;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{gap:1.2rem;}
+  #hero{grid-template-columns:1fr;padding:6rem 2rem 3rem;gap:2.5rem;}
+  .stat-row{grid-template-columns:1fr 1fr;padding:0 2rem 3rem;}
+  .pastel-section{padding:4rem 2rem;}
+  .tools-grid,.skills-grid,.certs-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  #contact{padding:4rem 2rem;}
+  footer{padding:1.5rem 2rem;flex-direction:column;gap:0.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Garima <span>Gupta</span></a>
+  <ul class="nav-links">
+    <li><a href="#ai-tools">AI Tools</a></li>
+    <li><a href="#copilot-project">Copilot Project</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO: Profile Summary + AI Skills side by side at top -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="pill-tag">Performance Engineering Lead · AI Specialist</div>
+    <h1>Garima<br><em>Gupta</em></h1>
+    <p class="hero-role">Microsoft · 12+ Years · Bengaluru, India</p>
+    <div class="summary-card">
+      <p><strong>Strategic Performance Lead</strong> with over 12 years of experience in end-to-end application tuning, scalability, and AI workload optimization. Expert in architecting automated frameworks and AI Agents to streamline the Performance Testing Life Cycle (PTLC), from strategy and capacity planning to deep-dive root cause analysis. Proven track record at <strong>Microsoft</strong> managing large-scale AKS clusters and utilizing AI tech stacks to reduce analysis time and enhance system reliability.</p>
+    </div>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-rose">View Experience ↓</a>
+      <a href="https://www.linkedin.com/in/ggarima91/" target="_blank" class="btn btn-lav">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <p class="hero-right-label">AI &amp; Core Skills</p>
+    <div class="ai-skill-card">
+      <div class="ai-icon" style="background:#f2c4ce;">🤖</div>
+      <div>
+        <div class="ai-skill-name">AI Agent Development</div>
+        <div class="ai-skill-desc">Built LLM-powered diagnostic agents for automated log correlation &amp; RCA across distributed systems</div>
+      </div>
+    </div>
+    <div class="ai-skill-card">
+      <div class="ai-icon" style="background:#d9d0f0;">⚡</div>
+      <div>
+        <div class="ai-skill-name">Automated Performance Diagnostics</div>
+        <div class="ai-skill-desc">AI-driven telemetry collation from App, DB &amp; load-testing tools — 65% faster root cause analysis</div>
+      </div>
+    </div>
+    <div class="ai-skill-card">
+      <div class="ai-icon" style="background:#b8e8d8;">☁️</div>
+      <div>
+        <div class="ai-skill-name">Azure AKS &amp; Cloud Infra</div>
+        <div class="ai-skill-desc">Managed large-scale Kubernetes clusters; reduced infra costs 20% through optimized resource allocation</div>
+      </div>
+    </div>
+    <div class="ai-skill-card">
+      <div class="ai-icon" style="background:#b8daf5;">🔬</div>
+      <div>
+        <div class="ai-skill-name">JMeter Framework Design</div>
+        <div class="ai-skill-desc">Architected end-to-end bootstrapping tools eliminating 12–16 manual hours per project setup</div>
+      </div>
+    </div>
+    <div class="ai-skill-card">
+      <div class="ai-icon" style="background:#fcd5b0;">📊</div>
+      <div>
+        <div class="ai-skill-name">AI/ML Perf on AKS</div>
+        <div class="ai-skill-desc">Led resiliency &amp; scalability testing for transformer-based model inference on Azure Kubernetes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stat-row">
+  <div class="stat-bubble">
+    <div class="stat-num" style="color:#c47a9a;">12+</div>
+    <div class="stat-lbl">Years Experience</div>
+  </div>
+  <div class="stat-bubble">
+    <div class="stat-num" style="color:#9078c8;">80%</div>
+    <div class="stat-lbl">Time-to-Test Reduction</div>
+  </div>
+  <div class="stat-bubble">
+    <div class="stat-num" style="color:#4aab88;">65%</div>
+    <div class="stat-lbl">Faster RCA via AI</div>
+  </div>
+  <div class="stat-bubble">
+    <div class="stat-num" style="color:#5090cc;">6</div>
+    <div class="stat-lbl">Azure Certifications</div>
+  </div>
+</div>
+
+<!-- AI TOOLS -->
+<section id="ai-tools" class="pastel-section">
+  <div class="sec-head">
+    <span class="sec-num">01 —</span>
+    <h2>AI <em>Tools Built</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="tools-grid">
+
+    <!-- Tool 01: Copilot NFR Agent -->
+    <div class="tool-card" style="background:linear-gradient(135deg,#f0ecff 0%,#e8f6f0 100%);">
+      <span class="tool-tag" style="background:var(--lavender);color:var(--ink2);">Tool 01 · Copilot Chat Agent</span>
+      <div class="tool-name">NFR-Driven Testing<br><em style="color:var(--lav-d);font-style:italic;">via Copilot Chat</em></div>
+      <div class="tool-sub">End-to-End AI Testing Workflow · JMeter · k6 · Azure</div>
+      <div class="tool-desc">Complete performance testing workflow from Copilot Chat — analyzes code diffs for <code style="background:rgba(255,255,255,0.7);padding:0.1rem 0.3rem;border-radius:4px;font-size:0.7rem;">[PERF]</code> &amp; <code style="background:rgba(255,255,255,0.7);padding:0.1rem 0.3rem;border-radius:4px;font-size:0.7rem;">[ARCH]</code> issues, auto-generates OpenAPI specs, captures NFR targets (p95/p99, concurrency, throughput), generates JMeter/.k6 scripts with auto-correlation &amp; duration assertions, sizes infra, runs a 15-sec sanity check, executes on local/Azure VM/cluster, and delivers p50–p99 analysis with proactive SLA-breach fixes.</div>
+      <div class="impact-row">
+        <div><div class="impact-val" style="color:var(--lav-d);">10</div><div class="impact-lbl">Step Workflow</div></div>
+        <div><div class="impact-val" style="color:var(--mint-d);">Zero</div><div class="impact-lbl">Manual Setup</div></div>
+      </div>
+    </div>
+
+    <!-- Tool 02: Performance Starter Kit -->
+    <div class="tool-card t1">
+      <span class="tool-tag">Tool 02 · JMeter + Azure</span>
+      <div class="tool-name">Performance<br>Starter Kit</div>
+      <div class="tool-sub">AI-Driven Performance Orchestration Framework</div>
+      <div class="tool-desc">Designed and architected an end-to-end performance bootstrapping tool that fully automates JMeter environment deployment — prerequisite management, plugin integration, and environment configuration — reducing manual setup burden to zero.</div>
+      <div class="impact-row">
+        <div><div class="impact-val">80%</div><div class="impact-lbl">Time-to-Test Reduction</div></div>
+        <div><div class="impact-val">16h</div><div class="impact-lbl">Saved per Project</div></div>
+      </div>
+    </div>
+
+    <!-- Tool 03: Performance Result Analyzer -->
+    <div class="tool-card t2">
+      <span class="tool-tag">Tool 03 · AI/ML Agent</span>
+      <div class="tool-name">Performance<br>Result Analyzer</div>
+      <div class="tool-sub">Intelligent Performance Diagnostics Agent</div>
+      <div class="tool-desc">Custom AI Agent automating post-test telemetry collation from App, DB, and load-testing tools. Uses LLM-based analysis and log scanning to correlate metrics across distributed systems — proactively identifying bottlenecks and performance regressions.</div>
+      <div class="impact-row">
+        <div><div class="impact-val">65%</div><div class="impact-lbl">Faster Root Cause Analysis</div></div>
+        <div><div class="impact-val">10h</div><div class="impact-lbl">Saved per Test Cycle</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="pastel-section">
+  <div class="sec-head">
+    <span class="sec-num">03 —</span>
+    <h2>Work <em>Experience</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="exp-list">
+    <!-- Microsoft -->
+    <div class="exp-card">
+      <div class="exp-strip"></div>
+      <div class="exp-header">
+        <div><div class="exp-co">Microsoft</div><div class="exp-role-title">Performance Engineering Lead</div></div>
+        <div class="exp-period">Jul 2019 — Present<br>6+ Years</div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Drove performance scope planning, capacity planning, and risk mitigation; presented detailed performance reports and mentored junior engineers in performance testing methodologies.</li>
+          <li>Created, implemented, optimized, and refactored performance scripts using JMeter and Gatling Scala for web-based, web services, and desktop applications.</li>
+          <li>Collaborated with stakeholders to determine user requirements; drove development of design documents for product and service performance.</li>
+          <li>Set up and managed AKS cluster environments for distributed JMeter execution on Azure; integrated with Azure DevOps Pipelines for automated load tests.</li>
+          <li>Developed automated test frameworks (JMeter, Locust, Apache Benchmark) integrated into CI/CD workflows to support frequent releases.</li>
+          <li>Conducted scalability and stress testing on data ingestion, transformation, and reporting systems under varying workloads.</li>
+          <li>Proficient in SQL for querying, data modelling, and optimizing relational (PostgreSQL, MySQL) and NoSQL (MongoDB, Cassandra) databases.</li>
+          <li>Built custom Azure Functions for volume-based load testing; used Azure Data Factory for monitoring and result collation.</li>
+          <li>Monitored and tuned Perf and Prod environments using Azure IaaS/PaaS/SaaS, Grafana, and Application Insights for high availability and observability.</li>
+          <li>DRI for SQL DB monitoring via SQL Profiler and Cosmos DB; developed Linux shell scripts for performance measurement automation.</li>
+        </ul>
+
+        <!-- AI Sub-project -->
+        <div style="margin-top:1.4rem;padding:1.2rem 1.4rem;background:linear-gradient(135deg,#f0ecff,#e8f6f0);border-radius:14px;border:1px solid var(--line);">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;">
+            <span style="background:var(--lavender);padding:0.2rem 0.7rem;border-radius:100px;font-family:'Fira Code',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink2);">AI Project</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;">Intelligent Resiliency &amp; ASK AI</span>
+          </div>
+          <ul class="exp-bullets" style="margin:0;">
+            <li>Designed a custom automation framework for microservices using Maven and Git, focusing on modularity and high-quality delivery in Agile.</li>
+            <li>Led performance, resiliency, and scalability testing for AI/ML apps — specifically optimizing transformer-based model inference on AKS.</li>
+            <li>Integrated automated load tests (JMeter/Gatling) into Azure DevOps pipelines with code quality checks and log scanning via Azure Monitor/Kusto.</li>
+            <li>Managed distributed testing environments using Docker and Kubernetes to simulate high-concurrency AI workloads — reducing infra costs by 20%.</li>
+            <li>Utilized Azure ADO for change management and incident tracking; documented and resolved all performance bottlenecks per QE process metrics.</li>
+          </ul>
+        </div>
+
+        <div class="exp-chips" style="margin-top:1rem;">
+          <span class="chip">Azure AKS</span><span class="chip">JMeter / Gatling</span><span class="chip">Locust</span>
+          <span class="chip">Cosmos DB</span><span class="chip">Docker / K8s</span><span class="chip">Grafana</span>
+          <span class="chip">App Insights</span><span class="chip">Python / Java</span><span class="chip">Azure DevOps</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sapient -->
+    <div class="exp-card">
+      <div class="exp-strip"></div>
+      <div class="exp-header">
+        <div><div class="exp-co">Sapient Global Markets</div><div class="exp-role-title">Senior QA Associate</div></div>
+        <div class="exp-period">Sep 2015 — Jul 2019<br>3 Yrs 11 Mos</div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Executed performance testing and re-engineering on Microsoft cloud IaaS infrastructure.</li>
+          <li>Integrated JMeter with Jenkins to automate test execution pipelines.</li>
+          <li>Performed performance tuning on Service Fabric web apps and Redis Cache.</li>
+          <li>Conducted comprehensive Linux performance analysis using perfmon, atop, and nmon.</li>
+          <li>Led intensive SQL DB monitoring — index rebuilding, reindexing, statistic updates, defragmentation, and vertical/horizontal partitioning.</li>
+        </ul>
+        <div class="exp-chips">
+          <span class="chip">Service Fabric</span><span class="chip">Redis Cache</span>
+          <span class="chip">Jenkins CI</span><span class="chip">Linux Profiling</span><span class="chip">SQL Profiler</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CresTech -->
+    <div class="exp-card">
+      <div class="exp-strip"></div>
+      <div class="exp-header">
+        <div><div class="exp-co">CresTech Software Systems</div><div class="exp-role-title">Quality Engineer</div></div>
+        <div class="exp-period">Jul 2013 — Sep 2015<br>2 Yrs 3 Mos</div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li>Prepared workload models and developed load testing scripts with parameterization, correlation, and checkpoints.</li>
+          <li>Performed Load, Stress, and Endurance testing across varied user load scenarios; identified bottlenecks and performed root cause analysis for performance degradation.</li>
+          <li>Executed Oracle DB monitoring and tuning using ADDM and AWS Reports; identified slow-running queries and set database tuning parameters.</li>
+          <li>Conducted thread-level profiling via JStack and IBM Thread Analyzer; monitored Heap Memory and GC utilization with Java Melody and IBM GC Memory Analyzer.</li>
+          <li>Performed code-level inspection using Dynatrace for root cause analysis of high response times and out-of-memory errors.</li>
+        </ul>
+        <div class="exp-chips">
+          <span class="chip">JMeter</span><span class="chip">Oracle ADDM</span>
+          <span class="chip">JStack</span><span class="chip">Dynatrace</span><span class="chip">IBM Thread Analyzer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="pastel-section" style="background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="sec-head">
+    <span class="sec-num">04 —</span>
+    <h2>Technical <em>Skills</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group sg1">
+      <div class="sg-title">Performance Testing</div>
+      <div class="skill-tags">
+        <span class="stag">JMeter</span><span class="stag">Gatling (Scala)</span><span class="stag">LoadRunner</span>
+        <span class="stag">Blazemeter</span><span class="stag">Neoload</span><span class="stag">Azure Load Testing</span><span class="stag">Locust</span>
+      </div>
+    </div>
+    <div class="skill-group sg2">
+      <div class="sg-title">Observability &amp; Analysis</div>
+      <div class="skill-tags">
+        <span class="stag">Dynatrace</span><span class="stag">AppDynamics</span><span class="stag">Grafana</span>
+        <span class="stag">App Insights</span><span class="stag">Visual VM</span><span class="stag">JConsole</span><span class="stag">Heap Dump</span>
+      </div>
+    </div>
+    <div class="skill-group sg3">
+      <div class="sg-title">Cloud &amp; Infrastructure</div>
+      <div class="skill-tags">
+        <span class="stag">Azure AKS</span><span class="stag">Docker</span><span class="stag">Kubernetes</span>
+        <span class="stag">Helm</span><span class="stag">Azure CLI</span><span class="stag">Azure Functions</span>
+      </div>
+    </div>
+    <div class="skill-group sg4">
+      <div class="sg-title">Languages &amp; Scripting</div>
+      <div class="skill-tags">
+        <span class="stag">Python</span><span class="stag">Java</span><span class="stag">PowerShell</span>
+        <span class="stag">Bash</span><span class="stag">SQL</span><span class="stag">Scala</span><span class="stag">KQL</span>
+      </div>
+    </div>
+    <div class="skill-group sg5">
+      <div class="sg-title">Databases</div>
+      <div class="skill-tags">
+        <span class="stag">SQL Server</span><span class="stag">Cosmos DB</span><span class="stag">Oracle</span>
+        <span class="stag">PostgreSQL</span><span class="stag">Redis Cache</span>
+      </div>
+    </div>
+    <div class="skill-group sg6">
+      <div class="sg-title">CI/CD &amp; DevOps</div>
+      <div class="skill-tags">
+        <span class="stag">Azure DevOps</span><span class="stag">GitHub Actions</span><span class="stag">Jenkins</span>
+        <span class="stag">Maven</span><span class="stag">Gradle</span><span class="stag">Git</span><span class="stag">SonarQube</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs" class="pastel-section">
+  <div class="sec-head">
+    <span class="sec-num">05 —</span>
+    <h2>Azure <em>Certifications</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card"><div class="cert-dot" style="background:#c47a9a;"></div><div><div class="cert-code-txt">AZ-400</div><div class="cert-name-txt">Microsoft Certified: DevOps Engineer Expert</div></div></div>
+    <div class="cert-card"><div class="cert-dot" style="background:#9078c8;"></div><div><div class="cert-code-txt">AI-102</div><div class="cert-name-txt">Microsoft Certified: Azure AI Engineer Associate</div></div></div>
+    <div class="cert-card"><div class="cert-dot" style="background:#4aab88;"></div><div><div class="cert-code-txt">AZ-204</div><div class="cert-name-txt">Microsoft Certified: Azure Developer Associate</div></div></div>
+    <div class="cert-card"><div class="cert-dot" style="background:#5090cc;"></div><div><div class="cert-code-txt">AZ-104</div><div class="cert-name-txt">Microsoft Certified: Azure Administrator Associate</div></div></div>
+    <div class="cert-card"><div class="cert-dot" style="background:#d4944a;"></div><div><div class="cert-code-txt">AI-900</div><div class="cert-name-txt">Microsoft Certified: Azure AI Fundamentals</div></div></div>
+    <div class="cert-card"><div class="cert-dot" style="background:#7ab85a;"></div><div><div class="cert-code-txt">AZ-900</div><div class="cert-name-txt">Microsoft Azure Fundamentals</div></div></div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="pastel-section" style="background:white;border-top:1px solid var(--line);">
+  <div class="sec-head">
+    <span class="sec-num">05 —</span>
+    <h2>Awards &amp; <em>Recognition</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="awards-flex">
+    <div class="award-card">
+      <div class="award-emoji">🏆</div>
+      <div class="award-title">Best Consultant — H2 Luminary</div>
+      <div class="award-body">Awarded for outstanding delivery excellence at Microsoft</div>
+    </div>
+    <div class="award-card">
+      <div class="award-emoji">⭐</div>
+      <div class="award-title">Excellence Award — Performance Lead</div>
+      <div class="award-body">Recognized by onsite client for exceptional performance leadership</div>
+    </div>
+    <div class="award-card">
+      <div class="award-emoji">💡</div>
+      <div class="award-title">Innovation Catalyst Award</div>
+      <div class="award-body">For utilizing AI tech stack to improve work deliverables and automation</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="contact-hed">Let's build<br><em>fast systems</em><br>together.</div>
+      <p class="contact-sub">Open to senior performance engineering, AI observability, or distributed systems leadership roles. Let's connect.</p>
+      <div class="contact-items">
+        <a href="/cdn-cgi/l/email-protection#5a3d3b2833373b743d2f2a2e3b6262681a3d373b333674393537" class="c-item">
+          <div class="c-ico" style="background:var(--rose);">✉️</div>
+          <span class="__cf_email__" data-cfemail="8deaecffe4e0eca3eaf8fdf9ecb5b5bfcdeae0ece4e1a3eee2e0">[email&#160;protected]</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ggarima91/" target="_blank" class="c-item">
+          <div class="c-ico" style="background:var(--lavender);">🔗</div>
+          linkedin.com/in/ggarima91 ↗
+        </a>
+        <a href="tel:+919899869108" class="c-item">
+          <div class="c-ico" style="background:var(--mint);">📱</div>
+          +91 98998 69108
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="edu-block">
+        <div class="edu-label">Education</div>
+        <div class="edu-item">
+          <div class="edu-deg">M.Tech — Artificial Intelligence &amp; ML</div>
+          <div class="edu-inst">BITS Pilani</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-deg">B.Tech — Computer Science Engineering</div>
+          <div class="edu-inst">Uttar Pradesh Technical University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Garima Gupta</span>
+  <span>Performance Engineering Lead · Microsoft · Bengaluru, India</span>
+</footer>
+
+<script>
+</script>
+</body>
+</html>
