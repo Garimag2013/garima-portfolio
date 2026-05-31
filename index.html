@@ -84,7 +84,7 @@ h2 em{font-style:italic;}
 #ai-tools{background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 @media(max-width:1100px){.tools-grid{grid-template-columns:1fr 1fr;}}
-
+@media(max-width:700px){.tools-grid{grid-template-columns:1fr;}}
 .tool-card{border-radius:20px;padding:2.2rem;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
 .tool-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(45,34,51,0.1);}
 .tool-card.t1{background:linear-gradient(135deg,#fdf0f5 0%,#f5edff 100%);}
@@ -284,7 +284,7 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
     <div class="stat-lbl">Faster RCA via AI</div>
   </div>
   <div class="stat-bubble">
-    <div class="stat-num" style="color:#5090cc;">6</div>
+    <div class="stat-num" style="color:#5090cc;">9</div>
     <div class="stat-lbl">Azure Certifications</div>
   </div>
 </div>
@@ -331,6 +331,43 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
       <div class="impact-row">
         <div><div class="impact-val" style="color:var(--mint-d);">100%</div><div class="impact-lbl">Reproducible Scores</div></div>
         <div><div class="impact-val" style="color:var(--sky-d);">CI/CD</div><div class="impact-lbl">Integrated</div></div>
+      </div>
+    </div>
+
+    <!-- Tool 04: Agentic QA Automation Suite -->
+    <div class="tool-card" style="background:linear-gradient(135deg,#fff8ed 0%,#fdf0ff 100%);grid-column:1/-1;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
+        <div>
+          <span class="tool-tag" style="background:var(--peach);color:var(--ink2);">Tool 04 · VS Code · GitHub Copilot Chat · Agentic AI</span>
+          <div class="tool-name" style="margin-top:0.5rem;">Agentic QA<br><em style="color:var(--peach-d);font-style:italic;">Automation Suite</em></div>
+          <div class="tool-sub">VS Code + GitHub Copilot Chat · Python · Playwright · GitHub API · Jira/Xray</div>
+        </div>
+        <div style="display:flex;gap:1.5rem;flex-shrink:0;">
+          <div><div class="impact-val" style="color:var(--peach-d);">3</div><div class="impact-lbl">AI Capabilities</div></div>
+          <div><div class="impact-val" style="color:var(--lav-d);">Zero</div><div class="impact-lbl">Manual Triggers</div></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+
+        <div style="padding:1rem 1.2rem;background:rgba(255,255,255,0.7);border-radius:12px;border:1px solid var(--line);">
+          <div style="font-family:'Fira Code',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--peach-d);margin-bottom:0.5rem;">① Test Plan Generator</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin-bottom:0.4rem;">Jira Epic → QA Test Plan</div>
+          <div style="font-size:0.78rem;color:var(--ink2);line-height:1.6;">Takes a Jira Epic key as input and produces a complete, Zerto-formatted QA test plan — from raw requirements to Jira/Xray QA test tickets — using VS Code Copilot Chat with skills, instructions &amp; prompts.</div>
+        </div>
+
+        <div style="padding:1rem 1.2rem;background:rgba(255,255,255,0.7);border-radius:12px;border:1px solid var(--line);">
+          <div style="font-family:'Fira Code',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--lav-d);margin-bottom:0.5rem;">② Agentic Regression Engine</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin-bottom:0.4rem;">PR-Driven Auto Regression</div>
+          <div style="font-size:0.78rem;color:var(--ink2);line-height:1.6;">Autonomous agents perform baseline discovery, detect PR-driven changes via GitHub API, and automatically trigger targeted regression tests using Python, Playwright, and REST APIs — with no manual intervention.</div>
+        </div>
+
+        <div style="padding:1rem 1.2rem;background:rgba(255,255,255,0.7);border-radius:12px;border:1px solid var(--line);">
+          <div style="font-family:'Fira Code',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--mint-d);margin-bottom:0.5rem;">③ BDD E2E Automation Suite</div>
+          <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin-bottom:0.4rem;">Playwright MCP → BDD → CI/CD</div>
+          <div style="font-size:0.78rem;color:var(--ink2);line-height:1.6;">Invokes <strong>Playwright MCP tool</strong> to auto-discover all locators &amp; selectors, then generates a full BDD test suite — Feature files, Step Definitions, POM classes, and Cucumber.js config. Executes in <strong>headless mode</strong> with on-the-fly <strong>self-healing</strong> for broken selectors, delivers a detailed <strong>Cucumber HTML report</strong>, and auto-pushes passing results to CI/CD.</div>
+        </div>
+
       </div>
     </div>
 
@@ -543,6 +580,9 @@ footer{background:var(--ink);color:rgba(253,248,240,0.4);padding:1.5rem 5rem;dis
     <div class="cert-card"><div class="cert-dot" style="background:#5090cc;"></div><div><div class="cert-code-txt">AZ-104</div><div class="cert-name-txt">Microsoft Certified: Azure Administrator Associate</div></div></div>
     <div class="cert-card"><div class="cert-dot" style="background:#d4944a;"></div><div><div class="cert-code-txt">AI-900</div><div class="cert-name-txt">Microsoft Certified: Azure AI Fundamentals</div></div></div>
     <div class="cert-card"><div class="cert-dot" style="background:#7ab85a;"></div><div><div class="cert-code-txt">AZ-900</div><div class="cert-name-txt">Microsoft Azure Fundamentals</div></div></div>
+    <div class="cert-card" style="border-left:3px solid var(--rose-d);"><div class="cert-dot" style="background:#e8709a;"></div><div><div class="cert-code-txt">AI-730</div><div class="cert-name-txt">Microsoft Certified: AI-730</div></div></div>
+    <div class="cert-card" style="border-left:3px solid var(--lav-d);"><div class="cert-dot" style="background:#a088d8;"></div><div><div class="cert-code-txt">AI-731</div><div class="cert-name-txt">Microsoft Certified: AI-731</div></div></div>
+    <div class="cert-card" style="border-left:3px solid var(--mint-d);"><div class="cert-dot" style="background:#5aba9a;"></div><div><div class="cert-code-txt">AI-100</div><div class="cert-name-txt">Microsoft Certified: AI-100</div></div></div>
   </div>
 </section>
 
